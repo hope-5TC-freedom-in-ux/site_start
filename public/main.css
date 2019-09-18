@@ -1,0 +1,15 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans);
+
+:root{
+  --dark-color:#444;
+  --darker-color:#222;
+  --light-color:#FFF;
+}
+
+.button{
+  font-weight: 300 !important;
+}
+
+#__BVID__4__BV_tab_controls_{
+  display:none;
+}
