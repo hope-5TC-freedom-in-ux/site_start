@@ -9,9 +9,26 @@
       </b-tab>
       <b-tab>
         <b-row class="step" align-h="center" align-v="center">
-          <home>Veuillez commencer par saisir un pseudo</home>
+          <home :length="4" errorMessage="Le pseudo doit contenir au moins 4 caractères"
+                @validate="next">Veuillez commencer par saisir un pseudo</home>
         </b-row>
       </b-tab>
+      <!-- <b-tab>
+        <b-row class="step" align-h="center" align-v="center">
+          <home :length="4" errorMessage="Le mail doit contenir au moins 4 caractères"
+                @validate="next">Et une adresse mail comme identifiant unique</home>
+        </b-row>
+      </b-tab> -->
+
+      <b-tab>
+        <b-row class="step" align-h="center" align-v="center">
+          <cgu>
+            Nous allons analyser votre comportement dans cette petite boîte noire d'expérimentation,
+            pour cela merci d'accepter nos condiditons générales d'utilisation de ces données.
+          </cgu>
+        </b-row>
+      </b-tab>
+
     </b-tabs>
     <ui-button @clicked="next">
       Continuer
@@ -22,6 +39,7 @@
 <script>
 import Home from './components/Home.vue'
 import UiButton from "./components/uiComponents/ui-button.vue"
+import Cgu from './components/Cgu.vue'
 export default {
   name: 'app',
   data(){
@@ -35,7 +53,7 @@ export default {
     }
   },
   components: {
-    Home,UiButton
+    Home,UiButton,Cgu
   }
 }
 </script>
@@ -44,6 +62,7 @@ export default {
 body{
   background-color: var(--dark-color) !important;
 }
+
 #app {
   color:var(--light-color) !important;
   font-family: 'Roboto','AvenirLight', Helvetica, Arial, sans-serif;
@@ -61,5 +80,9 @@ body{
 
 .step{
   height:70vh;
+}
+
+.step-higher{
+  height:80vh;
 }
 </style>

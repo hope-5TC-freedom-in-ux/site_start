@@ -4,6 +4,23 @@
   --dark-color:#444;
   --darker-color:#222;
   --light-color:#FFF;
+  --pseudo-light-color:#CCC;
+  --main-font:"Roboto";
+  --main-font-weight:300;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color:  var(--pseudo-light-color)!important;
+  font-style:italic;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: var(--pseudo-light-color)!important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: var(--pseudo-light-color)!important;
 }
 
 .button{
@@ -12,4 +29,32 @@
 
 #__BVID__4__BV_tab_controls_{
   display:none;
+}
+
+.b-toast.b-toast-solid .toast{
+  color:var(--light-color);
+  font-size:100%;
+  border-radius: 0px;
+  padding:0.5rem;
+  background-color:var(--dark-color);
+  border:var(--light-color);
+  border:1px solid var(--light-color);
+  font-family:var(--main-font);
+  font-weight:var(--main-font-weight);
+}
+
+.b-toast.b-toast-solid .toast-header{
+  color:var(--light-color);
+  font-weight: var(--main-font-weight) !important;
+  background-color:var(--dark-color);
+  font-family:var(--main-font);
+}
+
+.b-toast.b-toast-solid .toast-header .close{
+  color:var(--light-color);
+  opacity:0.9;
+}
+
+.b-toast.b-toast-solid .toast-header .close:hover{
+  opacity:1;
 }
