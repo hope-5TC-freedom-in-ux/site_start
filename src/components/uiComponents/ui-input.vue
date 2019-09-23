@@ -54,11 +54,11 @@ export default {
 }
 .form-control:focus,.form-control:active {
   outline:none;
-   border-color:var(--light-color) !important;
-   box-shadow: none !important;
-   background-color: var(--light-color) !important;
-   color:var(--dark-color) !important;
-   transition:all ease-in 300ms;
+  border-color:var(--light-color) !important;
+  box-shadow: none !important;
+  /* background-color: var(--light-color) !important; */
+  /* color:var(--dark-color) !important; */
+  transition:all ease-in 300ms;
 }
 
 .form-control:hover{

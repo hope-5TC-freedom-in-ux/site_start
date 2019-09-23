@@ -6,12 +6,18 @@
         <b-row id="home" class="step" align-h="center" align-v="center">
           Bonjour et bienvenue sur notre outil interactif
         </b-row>
+        <ui-button @clicked="next">
+          Continuer
+        </ui-button>
       </b-tab>
       <b-tab>
         <b-row class="step" align-h="center" align-v="center">
           <home :length="4" errorMessage="Le pseudo doit contenir au moins 4 caractères"
                 @validate="next">Veuillez commencer par saisir un pseudo</home>
         </b-row>
+        <ui-button @clicked="next">
+          Continuer
+        </ui-button>
       </b-tab>
       <!-- <b-tab>
         <b-row class="step" align-h="center" align-v="center">
@@ -19,7 +25,6 @@
                 @validate="next">Et une adresse mail comme identifiant unique</home>
         </b-row>
       </b-tab> -->
-
       <b-tab>
         <b-row class="step" align-h="center" align-v="center">
           <cgu>
@@ -27,12 +32,15 @@
             pour cela merci d'accepter nos condiditons générales d'utilisation de ces données.
           </cgu>
         </b-row>
+        <ui-button @clicked="next">
+          Continuer
+        </ui-button>
       </b-tab>
 
     </b-tabs>
-    <ui-button @clicked="next">
+    <!-- <ui-button @clicked="next">
       Continuer
-    </ui-button>
+    </ui-button> -->
   </b-container>
 </template>
 

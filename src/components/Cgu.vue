@@ -6,7 +6,7 @@
     <br />
     <span class="little-link">pour en savoir plus, cliquez <a @click="refuse">ici</a></span>
 
-    <b-modal id="cgu_modal" class="container">
+    <b-modal size="lg" title="Nos CGU" id="cgu_modal" class="container">
         {{cgu}}
         <br/>
         Si vous ne souhaitez pas accepter ces paramètres, cliquez <span @click="refuse">ici</span>
