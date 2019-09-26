@@ -1,6 +1,6 @@
 <template>
   <b-col>
-    <b-form-input @keyup.enter="validate" class="myInput" v-model="text" placeholder="Saisir ici"/>
+    <b-form-input @keyup.enter="validate" @update="sendChange" class="myInput" v-model="text" placeholder="Saisir ici"/>
   </b-col>
 </template>
 
@@ -29,6 +29,9 @@ export default {
           appendToast: false
         })
       }
+    },
+    sendChange(input){
+      this.$emit("update", input)
     },
     trigger(){
       this.$emit("clicked")

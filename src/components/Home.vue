@@ -4,7 +4,8 @@
     </slot>
     <b-row align-h="center">
       <b-col cols="3">
-        <ui-input :length="length" :errorMessage="errorMessage" @validate="$emit('validate')" class="input"></ui-input>
+        <ui-input class="input":length="length" v-model="input" :errorMessage="errorMessage"
+        @validate="validate"></ui-input>
       </b-col>
     </b-row>
   </b-col>
@@ -16,20 +17,23 @@ export default {
   name: 'Home',
   props:{
     errorMessage:String,
-    length:Number
+    length:Number,
   },
   data(){
     return{
       counter:0,
+      input:"",
     }
   },
   components:{
     UiInput
   },
   methods:{
-    count(){
-      console.log("clicked");
-      this.counter+=1;
+    makeAcceptable(){
+      this.$emit("acceptable");
+    },
+    validate(){
+      this.$emit('validate',this.input);
     }
   },
   mounted(){

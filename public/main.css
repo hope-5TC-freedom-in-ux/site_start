@@ -58,3 +58,12 @@
 .b-toast.b-toast-solid .toast-header .close:hover{
   opacity:1;
 }
+
+.modal-content{
+  background-color:var(--dark-color);
+  color:var(--light-color);
+  border-radius:0;
+  border:1px solid var(--light-color);
+  font-weight:300;
+  text-align: justify;
+}
