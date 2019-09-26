@@ -67,3 +67,17 @@
   font-weight:300;
   text-align: justify;
 }
+
+.modal-header .close{
+  color:var(--light-color);
+  opacity:0.9;
+}
+
+.modal-header .close:hover{
+  opacity:1;
+}
+
+.vue-simple-markdown{
+  color:var(--light-color);
+  text-align: justify;
+}

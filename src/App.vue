@@ -22,7 +22,7 @@
             </p>
           </b-col>
           <b-col cols="3">
-            <ui-input class="input":length="4" errorMessage="Le pseudo doit contenir au moins 4 caractères"
+            <ui-input class="input" :length="4" errorMessage="Le pseudo doit contenir au moins 4 caractères"
             @validate="next" @update="setPseudo"></ui-input>
           </b-col>
         </b-row>
@@ -38,7 +38,7 @@
   </b-tab> -->
   <b-tab>
     <b-row class="step" align-h="center" align-v="center">
-      <cgu>
+      <cgu @cguRead="trapNotify('Accès CGU', 10)" @cguRefused="trapNotify('CGU refusées',20)" @cguAccepted="trapNotify('CGU acceptées')">
         Nous allons analyser votre comportement dans cette petite boîte noire d'expérimentation,
         pour cela merci d'accepter nos condiditons générales d'utilisation de ces données.
       </cgu>
@@ -50,12 +50,22 @@
 
   <b-tab>
     <b-row class="step text-panel" align-h="center" align-v="center">
-      Premier piège, et vous venez d’être évalué.<br/>
+      <b-col>
+        <p>
+          Premier piège, et vous venez d’être évalué.<br/>
 
-      Voici votre score initial :
+          Cliquez sur Continuer pour voir votre score
+        </p>
+        <!-- <p>
+          <span class="text-sm">
+            temps : {{deltaTime}}<br/>
+            intégrité : 0
+          </span>
+        </p> -->
+      </b-col>
     </b-row>
     <ui-button @clicked="next">
-      Continuer
+      Prochain Challenge
     </ui-button>
   </b-tab>
 </b-tabs>
@@ -80,7 +90,20 @@ export default {
       end:null
     }
   },
+  computed:{
+    deltaTime(){
+      if (this.start !== null && this.end !== null){
+        return this.end - this.start;
+      }
+      else{
+        return NaN;
+      }
+    }
+  },
   methods:{
+    trapNotify(trap, score){
+      console.log("A trap has been hacked")
+    },
     next(){
       this.step+=1;
     },
@@ -94,6 +117,8 @@ export default {
       if(newVal==1){
         this.start=new Date().getSeconds();
         console.log("start : ", this.start)
+      }else if (newVal==3) {
+        this.end=new Date().getSeconds();
       }
     }
   },

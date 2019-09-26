@@ -4,17 +4,21 @@
 
     </slot>
     <br />
-    <span class="little-link">pour en savoir plus, cliquez <a @click="refuse">ici</a></span>
+    <span class="little-link">pour en savoir plus, cliquez <a @click="read">ici</a></span>
 
-    <b-modal size="lg" title="Nos CGU" id="cgu_modal" class="container">
-        {{cgu}}
-        <br/>
+    <b-modal size="xl" title="Nos CGU" hide-footer id="cgu_modal" class="container">
+      <p>
+        <vue-simple-markdown class="cgu" :source="cgu">
+        </vue-simple-markdown>
         Si vous ne souhaitez pas accepter ces paramètres, cliquez <span @click="refuse">ici</span>
+      </p>
+      <ui-button class="mt-2" variant="outline-primary" block @clicked="accept">Accept</ui-button>
     </b-modal>
   </b-col>
 </template>
 
 <script>
+import UiButton from './uiComponents/ui-button.vue'
 import txt from 'raw-loader!../assets/cgu.txt'
 export default {
   name:'cgu',
@@ -23,10 +27,24 @@ export default {
       cgu:"",
     }
   },
+  components:{
+    UiButton
+  },
   methods:{
-    refuse(){
-      console.log("you refused")
+    read(){
+      console.log("you read")
+      this.$emit("cguRead");
       this.$bvModal.show("cgu_modal")
+    },
+    refuse(){
+      this.$emit("cguRefused")
+      console.log("you refused")
+      this.$bvModal.hide("cgu_modal")
+    },
+    accept(){
+      this.$emit("cguAccepted")
+      console.log("you accepted")
+      this.$bvModal.hide("cgu_modal")
     }
   },
   mounted(){
@@ -36,12 +54,21 @@ export default {
 </script>
 
 <style scoped>
+.text-lg{
+  font-size: 120%;
+  font-weight: bold;
+  line-height: 3rem;
+}
 .main{
   font-size:2rem;
 }
 .little-link{
   text-align:left;
   font-size: 1rem;
+}
+
+.cgu{
+  text-align: justify;
 }
 .container{
   font-size:1rem;

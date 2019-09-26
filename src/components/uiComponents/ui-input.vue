@@ -19,7 +19,7 @@ export default {
   },
   methods:{
     validate(){
-      if(this.text.length > 0){
+      if(this.text.length >= this.length){
         this.$emit("validate",this.text)
       }else{
         this.$bvToast.toast(this.errorMessage , {
