@@ -1,22 +1,3 @@
-
-$(document).ready(()=>{
-  console.log("readey")
-  // $.get("cgu.txt",function(res){
-  //   let txt = res
-  // },'html')
-
-  $.ajax({
-    url: "cgu.txt",
-    success: (res)=>{
-      console.log(res)
-      let txt = res
-    },
-    dataType: 'html'
-  });
-})
-
-
-
 var UiInput = {
   props:{
     length:{
@@ -137,7 +118,9 @@ var app = new Vue({
       step:0,
       pseudo:"",
       start:null,
-      end:null
+      end:null,
+      read:false,
+      refused:false,
     }
   },
   computed:{
@@ -151,12 +134,22 @@ var app = new Vue({
     }
   },
   methods:{
-    trapNotify(trap, score){
+    end(){
+      if(this.deltaTime() > 1000){
+        this.trapNotify("CGU lues entièrement",20);
+      }
+      this.trapNotify("", 0,this.deltaTime())
+      document.location.replace('/');
+    },
+    trapNotify(trap, score,time){
+      if(!time){
+        let time=0
+      }
       console.log(this.$http)
       $.ajax({
         url: "/api/v0.1/score",
         method:'PATCH',
-        data:{score:score, trap:trap},
+        data:{privacy:score, time:time},
         context: document.body
       }).done(function() {
         $( this ).addClass( "done" );
@@ -180,6 +173,19 @@ var app = new Vue({
         this.end=new Date().getSeconds();
       }
     }
+  },
+  mounted(){
+    $.ajax({
+      url:"/api/v0.1/score",
+      method:"PATCH",
+      data:{score:-100},
+    })
+    .done(res=>{
+      console.log("done",res)
+    })
+    .fail(err=>{
+      console.log("failed",err)
+    })
   },
   components: {
     UiInput,UiButton,Cgu
@@ -217,7 +223,7 @@ var app = new Vue({
 
   <b-tab>
   <b-row class="step" align-h="center" align-v="center">
-  <cgu @cguRead="trapNotify('Accès CGU', 10)" @cguRefused="trapNotify('CGU refusées',20)" @cguAccepted="trapNotify('CGU acceptées')">
+  <cgu @cguRead="trapNotify('Accès CGU', 30)" @cguRefused="trapNotify('CGU refusées',50)" @cguAccepted="trapNotify('CGU acceptées',-10)">
   Nous allons analyser votre comportement dans cette petite boîte noire d'expérimentation,
   pour cela merci d'accepter nos condiditons générales d'utilisation de ces données.
   </cgu>
@@ -237,7 +243,7 @@ var app = new Vue({
   </p>
   </b-col>
   </b-row>
-  <ui-button @clicked="next">
+  <ui-button @clicked="end">
   Prochain Challenge
   </ui-button>
   </b-tab>
