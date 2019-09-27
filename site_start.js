@@ -148,9 +148,8 @@ var app = new Vue({
       console.log(this.$http)
       $.ajax({
         url: "/api/v0.1/score",
-        method:'PATCH',
+        method:"PATCH",
         data:{privacy:score, time:time},
-        context: document.body
       }).done(function() {
         $( this ).addClass( "done" );
       });
@@ -179,7 +178,7 @@ var app = new Vue({
     $.ajax({
       url:"/api/v0.1/score",
       method:"PATCH",
-      data:{score:-100},
+      data:{privacy:-100},
     })
     .done(res=>{
       console.log("done",res)
