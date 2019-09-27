@@ -142,17 +142,15 @@ var app = new Vue({
       document.location.href="/"
     },
     trapNotify(trap, score,time){
-      if(!time){
+      if(time === undefined){
         let time=0
       }
-      console.log(this.$http)
+      console.log(score, time)
       $.ajax({
         url: "/api/v0.1/score",
         method:"PATCH",
         data:{privacy:score, time:time},
-      }).done(function() {
-        $( this ).addClass( "done" );
-      });
+      })
       console.log("A trap has been hacked")
     },
     next(){
@@ -178,7 +176,7 @@ var app = new Vue({
     $.ajax({
       url:"/api/v0.1/score",
       method:"PATCH",
-      data:{privacy:-100,time:0},
+      data:{privacy:-99,time:0},
     })
     .done(res=>{
       console.log("done",res)
