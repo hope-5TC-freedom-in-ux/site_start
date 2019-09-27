@@ -139,7 +139,7 @@ var app = new Vue({
         this.trapNotify("CGU lues entièrement",20);
       }
       this.trapNotify("", 0,this.deltaTime())
-      document.location.replace('/');
+      document.location.href = "/";
     },
     trapNotify(trap, score,time){
       if(!time){
