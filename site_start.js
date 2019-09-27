@@ -136,7 +136,7 @@ var app = new Vue({
   methods:{
     finishChall(){
       if(this.deltaTime> 1000){
-        this.trapNotify("CGU lues entièrement",20);
+        this.trapNotify("CGU lues entièrement",20,0);
       }
       this.trapNotify("", 0,this.deltaTime)
       document.location.href="/"
@@ -221,7 +221,7 @@ var app = new Vue({
 
   <b-tab>
   <b-row class="step" align-h="center" align-v="center">
-  <cgu @cguRead="trapNotify('Accès CGU', 30)" @cguRefused="trapNotify('CGU refusées',50)" @cguAccepted="trapNotify('CGU acceptées',-10)">
+  <cgu @cguRead="trapNotify('Accès CGU', 30,0)" @cguRefused="trapNotify('CGU refusées',50,0)" @cguAccepted="trapNotify('CGU acceptées',-10,0)">
   Nous allons analyser votre comportement dans cette petite boîte noire d'expérimentation,
   pour cela merci d'accepter nos condiditons générales d'utilisation de ces données.
   </cgu>
