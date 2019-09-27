@@ -178,7 +178,7 @@ var app = new Vue({
     $.ajax({
       url:"/api/v0.1/score",
       method:"PATCH",
-      data:{privacy:-100},
+      data:{privacy:-100,time:0},
     })
     .done(res=>{
       console.log("done",res)
