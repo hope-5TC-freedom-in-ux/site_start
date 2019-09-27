@@ -134,12 +134,12 @@ var app = new Vue({
     }
   },
   methods:{
-    end(){
-      if(this.deltaTime() > 1000){
+    finishChall(){
+      if(this.deltaTime> 1000){
         this.trapNotify("CGU lues entièrement",20);
       }
-      this.trapNotify("", 0,this.deltaTime())
-      document.location.href = "/";
+      this.trapNotify("", 0,this.deltaTime)
+      document.location.href="/"
     },
     trapNotify(trap, score,time){
       if(!time){
@@ -157,6 +157,7 @@ var app = new Vue({
       console.log("A trap has been hacked")
     },
     next(){
+      console.log("next")
       this.step+=1;
     },
     setPseudo(pseudo){
@@ -243,7 +244,8 @@ var app = new Vue({
   </p>
   </b-col>
   </b-row>
-  <ui-button @clicked="end">
+
+  <ui-button @clicked="finishChall">
   Prochain Challenge
   </ui-button>
   </b-tab>
